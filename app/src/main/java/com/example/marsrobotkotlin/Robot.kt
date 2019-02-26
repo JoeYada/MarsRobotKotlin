@@ -3,7 +3,9 @@ package com.example.marsrobotkotlin
 class Robot(private var currentDirection: Direction,
             private var xPos: Int,
             private var yPos: Int,
-            private val currentEdge: Edge) {
+            private val currentEdge: Edge,
+            private val markedCoordinates: List<Pair<Int, Int>>,
+            private val listener: OnRobotLostListener) {
 
     private val commands: MutableList<Command> = mutableListOf()
     private var isLost = false
@@ -19,8 +21,11 @@ class Robot(private var currentDirection: Direction,
     fun setXPos(newPos: Int) {
         if (isLost) return
 
+        if (isAMarkedCoordinate(newPos, true)) return
+
         if (newPos < currentEdge.xFloor || newPos > currentEdge.xCeiling) {
             isLost = true
+            listener.onRobotLost(Pair(xPos, -100))
             return
         }
 
@@ -32,8 +37,11 @@ class Robot(private var currentDirection: Direction,
     fun setYPos(newPos: Int) {
         if (isLost) return
 
+        if (isAMarkedCoordinate(newPos, false)) return
+
         if (newPos < currentEdge.yFloor || newPos > currentEdge.yCeiling) {
             isLost = true
+            listener.onRobotLost(Pair(-100, yPos))
             return
         }
 
@@ -51,5 +59,15 @@ class Robot(private var currentDirection: Direction,
 
     fun addCommand(command: Command) = commands.add(command)
 
+
+    private fun isAMarkedCoordinate(pos: Int, isX: Boolean): Boolean {
+        markedCoordinates.forEach {
+            return if (isX) it.first == pos else it.second == pos
+        }
+        return false
+    }
+    interface OnRobotLostListener {
+        fun onRobotLost(lostPos: Pair<Int, Int>)
+    }
 
 }
