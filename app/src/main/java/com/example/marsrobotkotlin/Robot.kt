@@ -19,7 +19,7 @@ class Robot(private var currentDirection: Direction,
     fun setXPos(newPos: Int) {
         if (isLost) return
 
-        if (xPos < currentEdge.xFloor || xPos > currentEdge.xCeiling) {
+        if (newPos < currentEdge.xFloor || newPos > currentEdge.xCeiling) {
             isLost = true
             return
         }
@@ -32,7 +32,7 @@ class Robot(private var currentDirection: Direction,
     fun setYPos(newPos: Int) {
         if (isLost) return
 
-        if (yPos < currentEdge.yFloor || yPos > currentEdge.yCeiling) {
+        if (newPos < currentEdge.yFloor || newPos > currentEdge.yCeiling) {
             isLost = true
             return
         }

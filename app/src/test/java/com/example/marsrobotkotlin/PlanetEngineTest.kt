@@ -10,7 +10,7 @@ class PlanetEngineTest {
 
     @Before
     fun setup() {
-        planetEngine = PlanetEngine()
+        planetEngine = PlanetEngine(xMax = 5, yMax = 3)
     }
 
 
@@ -18,5 +18,12 @@ class PlanetEngineTest {
     fun testNormalInput() {
         planetEngine.initialiseRobot(1, 1, Direction.EAST)
         Assert.assertEquals("1 1 E", planetEngine.processCommandsAndGetFinalState("RFRFRFRF"))
+    }
+
+    @Test
+    fun testLostInput() {
+        planetEngine.initialiseRobot(3, 2, Direction.NORTH)
+        Assert.assertEquals("3 3 N LOST", planetEngine.processCommandsAndGetFinalState("FRRFLLFFRRFLL"))
+
     }
 }

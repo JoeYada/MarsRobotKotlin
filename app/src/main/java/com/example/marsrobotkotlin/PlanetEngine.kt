@@ -11,7 +11,8 @@ class PlanetEngine(private val xMax: Int, private val yMax: Int) {
     fun initialiseRobot(startX: Int, startY: Int, direction: Direction) {
         robot = Robot(currentDirection = direction,
             xPos = startX,
-            yPos = startY)
+            yPos = startY,
+            currentEdge = Edge(0, xMax, 0, yMax))
     }
 
     fun processCommandsAndGetFinalState(input: String): String {
