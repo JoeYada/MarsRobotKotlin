@@ -2,9 +2,11 @@ package com.example.marsrobotkotlin
 
 import java.lang.IllegalStateException
 
-class PlanetEngine {
+class PlanetEngine(private val xMax: Int, private val yMax: Int) {
 
     private lateinit var robot: Robot
+
+
 
     fun initialiseRobot(startX: Int, startY: Int, direction: Direction) {
         robot = Robot(currentDirection = direction,
