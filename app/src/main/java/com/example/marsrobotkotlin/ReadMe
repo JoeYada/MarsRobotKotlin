@@ -1,6 +1,13 @@
 Running Instructions:
-*Pass in values via test cases in PlanetEngineTest
+*Pass in values via test cases in PlanetEngineTest or Use the UI
+*If using UI, ignore spaces for initial position, and always set the planet size before any ops
 
 
 Suggested Improvements
-*Design UI to receive inputs
+*Design a better UI to receive inputs
+*Perform validation
+*Refactor logic to be more reusable and modular
+*Perform more tests with bigger datasets
+*streamline processing of position in Robot
+
+
