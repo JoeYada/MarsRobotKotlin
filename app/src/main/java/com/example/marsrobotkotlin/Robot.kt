@@ -25,7 +25,7 @@ class Robot(private var currentDirection: Direction,
 
         if (newPos < currentEdge.xFloor || newPos > currentEdge.xCeiling) {
             isLost = true
-            listener.onRobotLost(Pair(xPos, -100))
+            listener.onRobotLost(Pair(newPos, -100))
             return
         }
 
@@ -41,7 +41,7 @@ class Robot(private var currentDirection: Direction,
 
         if (newPos < currentEdge.yFloor || newPos > currentEdge.yCeiling) {
             isLost = true
-            listener.onRobotLost(Pair(-100, yPos))
+            listener.onRobotLost(Pair(-100, newPos))
             return
         }
 

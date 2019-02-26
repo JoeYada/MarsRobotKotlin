@@ -26,4 +26,15 @@ class PlanetEngineTest {
         Assert.assertEquals("3 3 N LOST", planetEngine.processCommandsAndGetFinalState("FRRFLLFFRRFLL"))
 
     }
+
+    @Test
+    fun testLostButRecoverInput() {
+        //Given
+        testLostInput()
+        //When
+        planetEngine.initialiseRobot(0, 3, Direction.WEST);
+        //Then
+        Assert.assertEquals("2 3 S", planetEngine
+            .processCommandsAndGetFinalState("LLFFFLFLFL"));
+    }
 }
